@@ -1,13 +1,13 @@
 public class PetsModel {
     //ผมทำข้อแรก ของ MVC ที่เป็นเรื่องสัตว์เลี้ยง
     //Attribute
-    private int id;
-    private String type;
-    private String lastCheckupDate;
-    private int vaccineCount;
-    private boolean accepted;
+    private int id;  //id
+    private String type; //type e.g. Phoenix, Dragon, Owl
+    private String lastCheckupDate;  //Last healrh check-up Date
+    private int vaccineCount; //How many pet have vaccine
+    private boolean accepted; //Accept or reject (true: Accept, false : Reject)
 
-    //Constructor
+    //Constructor of this class
     public PetsModel(int id, String type,String lastCheckupDate, int vaccineCount, boolean accepted){
         this.id = id;
         this.type = type;
@@ -27,5 +27,4 @@ public class PetsModel {
     public String toCSV(){
         return id + "," + type + "," + lastCheckupDate + "," + vaccineCount + "," + accepted;
     }
-    
 }

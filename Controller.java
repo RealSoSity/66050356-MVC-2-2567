@@ -40,6 +40,7 @@ public class Controller {
     class addPetsActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            //Get User input
             String id = view.getIdField();
             String type = view.getTypeSelected();
             String date = view.getDate();
@@ -47,7 +48,6 @@ public class Controller {
             boolean accepted = true;
 
             //Check constraint when user input
-
             if (!Pattern.matches("[1-9][0-9]{7}", id)) {
                 view.showMessage("Invalid ID: Must be 8 digits, first digit not 0");
                 return;
@@ -70,14 +70,23 @@ public class Controller {
                 return;
             }
 
+            //Check if there is dragon or owl, pollution field and owl field can't blank and should be Integer
+            if((type.toLowerCase()).equals("dragon") && !Pattern.matches("^\\d+", view.getPollutionField())){
+                view.showMessage("Pollution input is not an Integer or Blank");
+                return;
+            }else if((type.toLowerCase()).equals("owl") && !Pattern.matches("\\d+", view.getFlightDis())){
+                view.showMessage("Flight distance input is not an Integer or Blank");
+                return;
+            }
+
             //Check that we will accept pet or not by check constraint
             if((type.toLowerCase()).equals("phoenix") && !view.getFireProof()){ //check if Phoenix have FireProofCertificate
                 accepted = false;
                 view.showMessage("Phoenix not have Fire Proof Certificate"); //Show message to tell user
-            }else if((type.toLowerCase()).equals("dragon") && view.getPollutionField() > 70){ //Check if Dragon unlease pollution not more than 70
+            }else if((type.toLowerCase()).equals("dragon") && Integer.parseInt(view.getPollutionField()) > 70){ //Check if Dragon unlease pollution not more than 70
                 accepted = false;
                 view.showMessage("Pollution more than 70%");
-            }else if((type.toLowerCase()).equals("owl") && view.getFlightDis() < 100){ //check if owl can flight more 100km by dont eating anything
+            }else if((type.toLowerCase()).equals("owl") && Integer.parseInt(view.getFlightDis()) < 100){ //check if owl can flight more 100km by dont eating anything
                 accepted = false;
                 view.showMessage("Flight Distance less than 100km");
             }

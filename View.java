@@ -95,13 +95,13 @@ public class View extends JFrame {
     }
 
     //Get Pollution of Dragon
-    public int getPollutionField(){
-        return Integer.parseInt(pollutionField.getText());
+    public String getPollutionField(){
+        return pollutionField.getText();
     }
     
     //Get Flight Distance of Owl
-    public int getFlightDis(){
-        return Integer.parseInt(flightField.getText());
+    public String getFlightDis(){
+        return flightField.getText();
     }
 
     //Show error or message
