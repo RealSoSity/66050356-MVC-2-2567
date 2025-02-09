@@ -5,13 +5,16 @@ public class Model{
     private String type;
     private String lastCheckupDate;
     private int vaccineCount;
+    private boolean accepted;
 
     //Constructor
-    public Model(String id, String type,String lastCheckupDate, int vaccineCount){
+    public Model(String id, String type,String lastCheckupDate, int vaccineCount, boolean accepted){
         this.id = id;
         this.type = type;
         this.lastCheckupDate = lastCheckupDate;
         this.vaccineCount = vaccineCount;
+        this.accepted = accepted;
+
     }
 
     //Getter setter
@@ -19,50 +22,45 @@ public class Model{
     public String getType() { return type; }
     public String getLastCheckupDate() { return lastCheckupDate; }
     public int getVaccineCount() { return vaccineCount; }
+    public boolean getAccept(){return accepted;};
 
-    //toString
-    @Override
-    public String toString() {
-        return "Model [id=" + id + ", type=" + type + ", lastCheckupDate=" + lastCheckupDate + ", vaccineCount="
-                + vaccineCount + "]";
-    }
 }
 
-class Phoenix extends PetsModel{
-    private boolean fireProofCertificate;
-    public Phoenix(String id, String lastCheckupDate, int vaccineCount, boolean fireProofCertificate){
-        super(id, "Phoenix",lastCheckupDate,vaccineCount);
-        // if(!fireProofCertificate){
-        //     throw new Exception("Not have FireProof Ceritificate")
-        // }
+// class Phoenix extends PetsModel{
+//     private boolean fireProofCertificate;
+//     public Phoenix(String id, String lastCheckupDate, int vaccineCount, boolean fireProofCertificate){
+//         super(id, "Phoenix",lastCheckupDate,vaccineCount);
+//         // if(!fireProofCertificate){
+//         //     throw new Exception("Not have FireProof Ceritificate")
+//         // }
 
-        this.fireProofCertificate = fireProofCertificate;
-    }
-}
+//         this.fireProofCertificate = fireProofCertificate;
+//     }
+// }
 
-class Dragon extends PetsModel{
-    private int smokePollutionLevel;
+// class Dragon extends PetsModel{
+//     private int smokePollutionLevel;
 
-    public Dragon(String id, String lastCheckupDate, int vaccineCount, int smokePollutionLevel){
-        super(id, "Dragon",lastCheckupDate,vaccineCount);
-        // if(!fireProofCertificate){
-        //     throw new Exception("Not have FireProof Ceritificate")
-        // }
+//     public Dragon(String id, String lastCheckupDate, int vaccineCount, int smokePollutionLevel){
+//         super(id, "Dragon",lastCheckupDate,vaccineCount);
+//         // if(!fireProofCertificate){
+//         //     throw new Exception("Not have FireProof Ceritificate")
+//         // }
 
-        this.smokePollutionLevel = smokePollutionLevel;
-    }
-}
+//         this.smokePollutionLevel = smokePollutionLevel;
+//     }
+// }
 
-class Owl extends PetsModel{
-    private int fightDistance;
+// class Owl extends PetsModel{
+//     private int fightDistance;
 
-    public Owl(String id, String lastCheckupDate, int vaccineCount, int fightDistance){
-        super(id, "Owl",lastCheckupDate,vaccineCount);
-        // if(!fireProofCertificate){
-        //     throw new Exception("Not have FireProof Ceritificate")
-        // }
+//     public Owl(String id, String lastCheckupDate, int vaccineCount, int fightDistance){
+//         super(id, "Owl",lastCheckupDate,vaccineCount);
+//         // if(!fireProofCertificate){
+//         //     throw new Exception("Not have FireProof Ceritificate")
+//         // }
 
-        this.fightDistance = fightDistance;
-    }
-}
+//         this.fightDistance = fightDistance;
+//     }
+// }
 

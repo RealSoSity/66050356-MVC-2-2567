@@ -13,13 +13,14 @@ public class CsvRead {
 
     //Use to read data,which in CSV file
     private void readCsvData(){
+        pets.clear();
         try(BufferedReader  br = new BufferedReader(new FileReader(file_path))){
             String line;
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
 
                 if(data.length == 4){
-                    pets.add(new PetsModel(data[0], data[1], data[2], Integer.parseInt(data[3])));
+                    pets.add(new PetsModel(data[0], data[1], data[2], Integer.parseInt(data[3]), Boolean.parseBoolean(data[4])));
                 }
             }
         }catch(Exception e){
