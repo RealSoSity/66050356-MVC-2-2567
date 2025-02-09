@@ -35,7 +35,7 @@ public class Controller {
 
 
 
-    // AddActionlistener to button
+    // AddActionlistener to AddPets button (Add pets to school)
 
     class addPetsActionListener implements ActionListener{
         @Override
@@ -45,6 +45,8 @@ public class Controller {
             String date = view.getDate();
             int Vaccines = view.getVaccineCount();
             boolean accepted = true;
+
+            //Check constraint when user input
 
             if (!Pattern.matches("[1-9][0-9]{7}", id)) {
                 view.showMessage("Invalid ID: Must be 8 digits, first digit not 0");
@@ -59,13 +61,23 @@ public class Controller {
                 return;
             }
 
-            if((type.toLowerCase()).equals("phoenix") && !view.getFireProof()){
+            //Check format of date
+            String[] dateParts = date.split("/");
+            int day = Integer.parseInt(dateParts[0]);
+            int month = Integer.parseInt(dateParts[1]);
+            if(month < 1 || month > 12 || day < 1 || day > 31) {
+                view.showMessage("Invalid Date: Month should be between 1-12 and Day should be between 1-31");
+                return;
+            }
+
+            //Check that we will accept pet or not by check constraint
+            if((type.toLowerCase()).equals("phoenix") && !view.getFireProof()){ //check if Phoenix have FireProofCertificate
                 accepted = false;
-                view.showMessage("Phoenix not have Fire Proof Certificate");
-            }else if((type.toLowerCase()).equals("dragon") && view.getPollutionField() > 70){
+                view.showMessage("Phoenix not have Fire Proof Certificate"); //Show message to tell user
+            }else if((type.toLowerCase()).equals("dragon") && view.getPollutionField() > 70){ //Check if Dragon unlease pollution not more than 70
                 accepted = false;
                 view.showMessage("Pollution more than 70%");
-            }else if((type.toLowerCase()).equals("owl") && view.getFlightDis() < 100){
+            }else if((type.toLowerCase()).equals("owl") && view.getFlightDis() < 100){ //check if owl can flight more 100km by dont eating anything
                 accepted = false;
                 view.showMessage("Flight Distance less than 100km");
             }
@@ -74,6 +86,9 @@ public class Controller {
             view.updateTable(pets);
         }
     }
+    
+    
+    //Call function when user press Report button
 
     class ReportAddActionListener implements ActionListener{
 
