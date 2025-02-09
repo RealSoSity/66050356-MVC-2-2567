@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class View extends JFrame {
 
@@ -29,4 +30,20 @@ public class View extends JFrame {
         //Add Component to Frame
         this.add(inputPanel, BorderLayout.NORTH);
     }
+
+    //Get Input(String) from textField
+    public String getTextField(){
+        return textField.getText();
+    }
+
+    //AddActionListener to Button for make it can perform process
+    public void addActionListener(ActionListener ae){
+        ansButton.addActionListener(ae);
+    }
+
+    public void showMessage(String e){
+        JOptionPane.showMessageDialog(rootPane, e);
+    }
+
+    
 }
