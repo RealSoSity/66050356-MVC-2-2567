@@ -4,6 +4,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
+import java.util.List;
+
 public class View extends JFrame {
 
     //Component declaration
@@ -39,7 +41,7 @@ public class View extends JFrame {
 
         inputPanel.add(new JLabel("ID:")); inputPanel.add(idField);
         inputPanel.add(new JLabel("Type:")); inputPanel.add(typeBox);
-        inputPanel.add(new JLabel("Health Check Date:")); inputPanel.add(dateField);
+        inputPanel.add(new JLabel("Last Check Date:")); inputPanel.add(dateField);
         inputPanel.add(new JLabel("Vaccines:")); inputPanel.add(vaccineField);
         inputPanel.add(fireProofBox);
         inputPanel.add(pollutionField);
@@ -87,12 +89,41 @@ public class View extends JFrame {
         return Integer.parseInt(vaccineField.getText());
     } 
 
+    //Get FireProofBox
+    public boolean getFireProof(){
+        return fireProofBox.isSelected();
+    }
+
+    //Get Pollution of Dragon
+    public int getPollutionField(){
+        return Integer.parseInt(pollutionField.getText());
+    }
+    
+    //Get Flight Distance of Owl
+    public int getFlightDis(){
+        return Integer.parseInt(flightField.getText());
+    }
+
     //Show error or message
     public void showMessage(String e){
         JOptionPane.showMessageDialog(rootPane, e);
     }
 
+    //Update table
+    public void updateTable(List<PetsModel> pets){
+        tableModel.setRowCount(0);
+        for(PetsModel pet : pets){
+            tableModel.addRow(new Object[]{pet.getId(), pet.getType(), pet.getLastCheckupDate(), pet.getVaccineCount(), pet.getAccept() ? "Yes" : "No"});
+        }
+    }
 
-
+    public void showReport(int phoenixAcceptCount, int dragonAcceptCount, int owlAcceptCount, int rejectCount){
+        String report = "Report:\n" +
+                "Phoenix Accepted: " + phoenixAcceptCount + "\n" +
+                "Dragon Accepted: " + dragonAcceptCount + "\n" +
+                "Owl Accepted: " + owlAcceptCount + "\n" +
+                "Total Rejected: " + rejectCount;
+        JOptionPane.showMessageDialog(this, report, "Summary Report", JOptionPane.INFORMATION_MESSAGE);
+    }
     
 }
