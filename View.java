@@ -7,9 +7,17 @@ import java.awt.event.ActionListener;
 public class View extends JFrame {
 
     //Component declaration
-    private JTextField textField;
-    private JButton ansButton;
-    private DefaultTableModel tableModel;
+        private JPanel inputPanel;
+        private JTextField idField;
+        private JComboBox<String> typeBox;
+        private JTextField dateField;
+        private JTextField vaccineField;
+        private JCheckBox fireProofBox;
+        private JTextField pollutionField;
+        private JTextField flightField;
+        private JButton addButton;
+        private JButton reportButton;
+        private DefaultTableModel tableModel;
     
     public View(){
         //Set-up Frame
@@ -18,17 +26,16 @@ public class View extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());
 
-        //Set-up Component
-        // Input Panel
-        JPanel inputPanel = new JPanel(new GridLayout(6, 2));
-        JTextField idField = new JTextField();
-        JComboBox<String> typeBox = new JComboBox<>(new String[]{"Phoenix", "Dragon", "Owl"});
-        JTextField dateField = new JTextField();
-        JTextField vaccineField = new JTextField();
-        JCheckBox fireProofBox = new JCheckBox("Fire Proof Certificate (Phoenix)");
-        JTextField pollutionField = new JTextField("Pollution Level (Dragon)");
-        JTextField flightField = new JTextField("Flight Distance (Owl)");
-        JButton addButton = new JButton("Add Pet");
+        //Set-up Component for GUI(View)
+        inputPanel = new JPanel(new GridLayout(6, 2));
+        idField = new JTextField();
+        typeBox = new JComboBox<>(new String[]{"Phoenix", "Dragon", "Owl"});
+        dateField = new JTextField();
+        vaccineField = new JTextField();
+        fireProofBox = new JCheckBox("Fire Proof Certificate (Phoenix)");
+        pollutionField = new JTextField("Pollution Level (Dragon)");
+        flightField = new JTextField("Flight Distance (Owl)");
+        addButton = new JButton("Add Pet");
 
         inputPanel.add(new JLabel("ID:")); inputPanel.add(idField);
         inputPanel.add(new JLabel("Type:")); inputPanel.add(typeBox);
@@ -47,23 +54,45 @@ public class View extends JFrame {
         add(new JScrollPane(table), BorderLayout.CENTER);
 
         // Button to show report
-        JButton reportButton = new JButton("Show Report");
+        reportButton = new JButton("Show Report");
         add(reportButton, BorderLayout.SOUTH);
     }
 
     //Get Input(String) from textField
-    public String getTextField(){
-        return textField.getText();
+    public String getIdField(){
+        return idField.getText();
     }
 
     //AddActionListener to Button for make it can perform process
-    public void addActionListener(ActionListener ae){
-        ansButton.addActionListener(ae);
+    public void addPetsActionListener(ActionListener ae){
+        addButton.addActionListener(ae);
     }
 
+    //AddActionListener to Report button
+    public void reportActionListener(ActionListener ae){
+        reportButton.addActionListener(ae);
+    }
+
+    //Getter get type
+    public String getTypeSelected(){
+        return typeBox.getSelectedItem().toString();
+    }
+    //Get Date
+    public String getDate(){
+        return dateField.getText();
+    }
+
+    //Get Vaccines
+    public int getVaccineCount(){
+        return Integer.parseInt(vaccineField.getText());
+    } 
+
+    //Show error or message
     public void showMessage(String e){
         JOptionPane.showMessageDialog(rootPane, e);
     }
+
+
 
     
 }

@@ -1,3 +1,5 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,5 +30,20 @@ public class Controller {
         return (int) pets.stream().filter(p -> !p.getAccept()).count();
     }
 
+
+
+    //AddActionlistener to button
+
+    class addPetsActionListener implements ActionListener{
+        String id = view.getIdField();
+        String type = view.getTypeSelected();
+        String date = view.getDate();
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+        }
+        
+    }
 
 }
