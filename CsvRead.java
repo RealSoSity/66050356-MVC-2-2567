@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvRead {
-    private List<PetsModel> pets = new ArrayList<>();
-    private String file_path;
+    //Setup Attribute
+    private String file_path; //File path
 
     public CsvRead(String file_path){
         this.file_path = file_path;
+        //read csv when open program
     }
 
     //Use to read data,which in CSV file
-    private void readCsvData(){
-        pets.clear();
+    public void readCsvData(List<PetsModel> pets){
         try(BufferedReader  br = new BufferedReader(new FileReader(file_path))){
             String line;
             while((line = br.readLine()) != null){
@@ -26,9 +26,5 @@ public class CsvRead {
         }catch(Exception e){
             e.printStackTrace();
         }
-    }
-
-    public List<PetsModel> getPetsList(){
-        return pets;
     }
 }

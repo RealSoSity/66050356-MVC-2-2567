@@ -11,24 +11,34 @@ public class Controller {
     private CsvWritter csvWritter;
     private List<PetsModel> pets = new ArrayList<>();
 
+
+    //Constructor
     public Controller(View view, CsvRead csvRead, CsvWritter csvWritter){
         this.view = view;
         this.csvRead = csvRead;
         this.csvWritter = csvWritter;
-        pets = csvRead.getPetsList();
+        csvRead.readCsvData(pets);
+        this.view.updateTable(pets);
 
+        //Add ActionListener to Add pets button and Report button
         this.view.addPetsActionListener(new addPetsActionListener());
+        this.view.reportActionListener(new ReportAddActionListener());
+
+        //Update table when Open program
     }
 
+    //Add pet to CSV
     private void addPets(PetsModel pet){
         pets.add(pet);
         csvWritter.addPets(pets);
     }
 
+    //Check Count of Accept
     public int getAcceptCount(String type){
         return (int) pets.stream().filter(p -> p.getType().equals(type) && p.getAccept()).count();
     }
 
+    //Get reject count
     public int getRejectCount(){
         return (int) pets.stream().filter(p -> !p.getAccept()).count();
     }
@@ -91,6 +101,7 @@ public class Controller {
                 view.showMessage("Flight Distance less than 100km");
             }
 
+            //Add Pet to List of pet then update table of GUI
             addPets(new PetsModel(Integer.parseInt(id), type, date, Vaccines, accepted));
             view.updateTable(pets);
         }
@@ -100,7 +111,6 @@ public class Controller {
     //Call function when user press Report button
 
     class ReportAddActionListener implements ActionListener{
-
         @Override
         public void actionPerformed(ActionEvent e) {
            view.showReport(getAcceptCount("Phoenix"), getAcceptCount("Dragon"), getAcceptCount("Owl"), getRejectCount());
