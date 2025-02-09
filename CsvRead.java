@@ -19,7 +19,7 @@ public class CsvRead {
             while((line = br.readLine()) != null){
                 String[] data = line.split(",");
 
-                if(data.length == 4){
+                if(data.length == 5){
                     pets.add(new PetsModel(Integer.parseInt(data[0]), data[1], data[2], Integer.parseInt(data[3]), Boolean.parseBoolean(data[4])));
                 }
             }
