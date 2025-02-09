@@ -1,9 +1,10 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CsvRead {
-    private List<Model> 
+    private List<PetsModel> pets = new ArrayList<>();
     private String file_path;
 
     public CsvRead(String file_path){
@@ -18,11 +19,15 @@ public class CsvRead {
                 String[] data = line.split(",");
 
                 if(data.length == 4){
-
+                    pets.add(new PetsModel(data[0], data[1], data[2], Integer.parseInt(data[3])));
                 }
             }
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    public List<PetsModel> getPetsList(){
+        return pets;
     }
 }

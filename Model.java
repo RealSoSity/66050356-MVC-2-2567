@@ -26,6 +26,43 @@ public class Model{
         return "Model [id=" + id + ", type=" + type + ", lastCheckupDate=" + lastCheckupDate + ", vaccineCount="
                 + vaccineCount + "]";
     }
-
-    
 }
+
+class Phoenix extends PetsModel{
+    private boolean fireProofCertificate;
+    public Phoenix(String id, String lastCheckupDate, int vaccineCount, boolean fireProofCertificate){
+        super(id, "Phoenix",lastCheckupDate,vaccineCount);
+        // if(!fireProofCertificate){
+        //     throw new Exception("Not have FireProof Ceritificate")
+        // }
+
+        this.fireProofCertificate = fireProofCertificate;
+    }
+}
+
+class Dragon extends PetsModel{
+    private int smokePollutionLevel;
+
+    public Dragon(String id, String lastCheckupDate, int vaccineCount, int smokePollutionLevel){
+        super(id, "Dragon",lastCheckupDate,vaccineCount);
+        // if(!fireProofCertificate){
+        //     throw new Exception("Not have FireProof Ceritificate")
+        // }
+
+        this.smokePollutionLevel = smokePollutionLevel;
+    }
+}
+
+class Owl extends PetsModel{
+    private int fightDistance;
+
+    public Owl(String id, String lastCheckupDate, int vaccineCount, int fightDistance){
+        super(id, "Owl",lastCheckupDate,vaccineCount);
+        // if(!fireProofCertificate){
+        //     throw new Exception("Not have FireProof Ceritificate")
+        // }
+
+        this.fightDistance = fightDistance;
+    }
+}
+
